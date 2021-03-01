@@ -3,7 +3,8 @@ using System;
 
 namespace PersianTools.Core
 {
-    public partial class PersianDateTime
+    public partial class 
+        PersianDateTime
     {
         /// <summary>
         /// شنبه بیست آذر سال یکهزار سیصد و نود وهفت ساعت هفت و سی دقیقه و بیست ثانیه

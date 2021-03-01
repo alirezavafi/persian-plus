@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28417517-CA05-4924-8F33-0CE11400F296}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34E5A0B6-4697-4F5F-BC3F-9DF9A019A93B}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persian.Plus.Core", "src\Persian.Plus.Core\Persian.Plus.Core.csproj", "{DCE5958C-556E-4BFA-A553-6A0098E5ECD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCE5958C-556E-4BFA-A553-6A0098E5ECD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE5958C-556E-4BFA-A553-6A0098E5ECD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DCE5958C-556E-4BFA-A553-6A0098E5ECD3} = {28417517-CA05-4924-8F33-0CE11400F296}
+	EndGlobalSection
+EndGlobal
