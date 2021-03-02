@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading;
 using Persian.Plus.Core.Internal;
+using static System.FormattableString;
+
 
 namespace Persian.Plus.Core.Extensions
 {
@@ -225,10 +227,10 @@ namespace Persian.Plus.Core.Extensions
         /// <summary>
         /// تاریخ روزهای ابتدا و انتهای سال شمسی را بازگشت می‌دهد
         /// </summary>
-        public static PersianYear GetPersianYearStartAndEndDates(this int persianYear)
+        public static DateRange GetPersianYearStartAndEndDates(this int persianYear)
         {
             var persianCalendar = new PersianCalendar();
-            return new PersianYear
+            return new DateRange
             {
                 StartDate = persianCalendar.ToDateTime(persianYear, 1, 1, 0, 0, 0, 0),
                 EndDate = persianCalendar.ToDateTime(persianYear, 12, persianYear.GetPersianMonthLastDay(12), 23, 59, 59, 0)
@@ -241,7 +243,7 @@ namespace Persian.Plus.Core.Extensions
         /// </summary>
         /// <param name="dateTime"></param>
         /// <param name="convertToIranTimeZone">اگر تاریخ و زمان با فرمت UTC باشند، ابتدا آن‌ها را به منطقه‌ی زمانی ایران تبدیل می‌کند</param>
-        public static PersianYear GetPersianYearStartAndEndDates(this DateTime dateTime, bool convertToIranTimeZone = true)
+        public static DateRange GetPersianYearStartAndEndDates(this DateTime dateTime, bool convertToIranTimeZone = true)
         {
             var persianYear = dateTime.GetPersianYear(convertToIranTimeZone);
             return persianYear.GetPersianYearStartAndEndDates();
@@ -251,7 +253,7 @@ namespace Persian.Plus.Core.Extensions
         /// سال شمسی معادل را محاسبه کرده و سپس
         /// تاریخ روزهای ابتدا و انتهای آن سال شمسی را بازگشت می‌دهد
         /// </summary>
-        public static PersianYear GetPersianYearStartAndEndDates(this DateTimeOffset dateTimeOffset, DateTimeOffsetPart dateTimeOffsetPart = DateTimeOffsetPart.IranLocalDateTime)
+        public static DateRange GetPersianYearStartAndEndDates(this DateTimeOffset dateTimeOffset, DateTimeOffsetPart dateTimeOffsetPart = DateTimeOffsetPart.IranLocalDateTime)
         {
             var persianYear = dateTimeOffset.GetDateTimeOffsetPart(dateTimeOffsetPart).GetPersianYear();
             return persianYear.GetPersianYearStartAndEndDates();
@@ -260,10 +262,10 @@ namespace Persian.Plus.Core.Extensions
         /// <summary>
         /// تاریخ روزهای ابتدا و انتهای ماه شمسی را بازگشت می‌دهد
         /// </summary>
-        public static PersianMonth GetPersianMonthStartAndEndDates(this int persianYear, int persianMonth)
+        public static DateRange GetPersianMonthStartAndEndDates(this int persianYear, int persianMonth)
         {
             var persianCalendar = new PersianCalendar();
-            return new PersianMonth
+            return new DateRange
             {
                 StartDate = persianCalendar.ToDateTime(persianYear, persianMonth, 1, 0, 0, 0, 0),
                 EndDate = persianCalendar.ToDateTime(persianYear, persianMonth, persianYear.GetPersianMonthLastDay(persianMonth), 23, 59, 59, 0)
@@ -276,7 +278,7 @@ namespace Persian.Plus.Core.Extensions
         /// </summary>
         /// <param name="dateTime"></param>
         /// <param name="convertToIranTimeZone">اگر تاریخ و زمان با فرمت UTC باشند، ابتدا آن‌ها را به منطقه‌ی زمانی ایران تبدیل می‌کند</param>
-        public static PersianMonth GetPersianMonthStartAndEndDates(this DateTime dateTime, bool convertToIranTimeZone = true)
+        public static DateRange GetPersianMonthStartAndEndDates(this DateTime dateTime, bool convertToIranTimeZone = true)
         {
             var persianYear = dateTime.GetPersianYear(convertToIranTimeZone);
             var persianMonth = dateTime.GetPersianMonth(convertToIranTimeZone);
@@ -287,7 +289,7 @@ namespace Persian.Plus.Core.Extensions
         /// ماه شمسی معادل را محاسبه کرده و سپس
         /// تاریخ روزهای ابتدا و انتهای آن ماه شمسی را بازگشت می‌دهد
         /// </summary>
-        public static PersianMonth GetPersianMonthStartAndEndDates(this DateTimeOffset dateTimeOffset, DateTimeOffsetPart dateTimeOffsetPart = DateTimeOffsetPart.IranLocalDateTime)
+        public static DateRange GetPersianMonthStartAndEndDates(this DateTimeOffset dateTimeOffset, DateTimeOffsetPart dateTimeOffsetPart = DateTimeOffsetPart.IranLocalDateTime)
         {
             var dateTime = dateTimeOffset.GetDateTimeOffsetPart(dateTimeOffsetPart);
             var persianYear = dateTime.GetPersianYear();
@@ -298,7 +300,7 @@ namespace Persian.Plus.Core.Extensions
         /// <summary>
         /// تاریخ روزهای ابتدا و انتهای هفته شمسی را بازگشت می‌دهد
         /// </summary>
-        public static PersianWeek GetPersianWeekStartAndEndDates(this int persianYear, int persianMonth, int persianDay)
+        public static DateRange GetPersianWeekStartAndEndDates(this int persianYear, int persianMonth, int persianDay)
         {
             var dateTime = new PersianCalendar().ToDateTime(persianYear, persianMonth, persianDay, 0, 0, 0, 0);
             return GetPersianWeekStartAndEndDates(dateTime);
@@ -310,7 +312,7 @@ namespace Persian.Plus.Core.Extensions
         /// </summary>
         /// <param name="dateTime"></param>
         /// <param name="convertToIranTimeZone">اگر تاریخ و زمان با فرمت UTC باشند، ابتدا آن‌ها را به منطقه‌ی زمانی ایران تبدیل می‌کند</param>
-        public static PersianWeek GetPersianWeekStartAndEndDates(this DateTime dateTime, bool convertToIranTimeZone = true)
+        public static DateRange GetPersianWeekStartAndEndDates(this DateTime dateTime, bool convertToIranTimeZone = true)
         {
             if (dateTime.Kind == DateTimeKind.Utc && convertToIranTimeZone)
             {
@@ -321,7 +323,7 @@ namespace Persian.Plus.Core.Extensions
             var offset = -1 * ((7 + (dateTime.DayOfWeek - firstDayOfWeek)) % 7);
             var firstDayOfWeekDate = dateTime.AddDays(offset);
             var lastDayOfWeekDate = firstDayOfWeekDate.AddDays(6);
-            return new PersianWeek
+            return new DateRange
             {
                 StartDate = firstDayOfWeekDate,
                 EndDate = new DateTime(lastDayOfWeekDate.Year, lastDayOfWeekDate.Month, lastDayOfWeekDate.Day, 23, 59, 59, 0)
@@ -332,7 +334,7 @@ namespace Persian.Plus.Core.Extensions
         /// هفته شمسی معادل را محاسبه کرده و سپس
         /// تاریخ روزهای ابتدا و انتهای آن هفته شمسی را بازگشت می‌دهد
         /// </summary>
-        public static PersianWeek GetPersianWeekStartAndEndDates(this DateTimeOffset dateTimeOffset, DateTimeOffsetPart dateTimeOffsetPart = DateTimeOffsetPart.IranLocalDateTime)
+        public static DateRange GetPersianWeekStartAndEndDates(this DateTimeOffset dateTimeOffset, DateTimeOffsetPart dateTimeOffsetPart = DateTimeOffsetPart.IranLocalDateTime)
         {
             var dateTime = dateTimeOffset.GetDateTimeOffsetPart(dateTimeOffsetPart);
             return GetPersianWeekStartAndEndDates(dateTime);
@@ -426,8 +428,8 @@ namespace Persian.Plus.Core.Extensions
                 persianYear += 1300;
             }
 
-            var strDay = PersianCulture.GetPersianWeekDayName(persianYear, persianMonth, persianDay);
-            var strMonth = PersianCulture.PersianMonthNames[persianMonth];
+            var strDay = GetPersianWeekDayName(persianYear, persianMonth, persianDay);
+            var strMonth = PersianMonthNames[persianMonth];
             return Invariant($"{strDay} {persianDay} {strMonth} {persianYear}").ToPersianNumbers();
         }
 
@@ -684,12 +686,12 @@ namespace Persian.Plus.Core.Extensions
 
             if (yesterday == date.Date)
             {
-                return $"دیروز {PersianCulture.GetPersianWeekDayName(persianYear, persianMonth, persianDay)}{hhMm}";
+                return $"دیروز {GetPersianWeekDayName(persianYear, persianMonth, persianDay)}{hhMm}";
             }
 
             if (tomorrow == date.Date)
             {
-                return $"فردا {PersianCulture.GetPersianWeekDayName(persianYear, persianMonth, persianDay)}{hhMm}";
+                return $"فردا {GetPersianWeekDayName(persianYear, persianMonth, persianDay)}{hhMm}";
             }
 
             var dayStr = includePersianDate ? $"، {ToPersianDateTextify(persianYear, persianMonth, persianDay)}{hhMm}" : string.Empty;
@@ -851,7 +853,7 @@ namespace Persian.Plus.Core.Extensions
                 if (splitedTime.Length > 2)
                 {
                     var lastPart = splitedTime[2].Trim();
-                    var formatInfo = PersianCulture.Instance.DateTimeFormat;
+                    var formatInfo = Instance.DateTimeFormat;
                     if (lastPart.Equals(formatInfo.PMDesignator, StringComparison.OrdinalIgnoreCase))
                     {
                         if (hour < 12)
@@ -905,7 +907,7 @@ namespace Persian.Plus.Core.Extensions
         /// <param name="convertToIranTimeZone">اگر تاریخ و زمان با فرمت UTC باشند، ابتدا آن‌ها را به منطقه‌ی زمانی ایران تبدیل می‌کند</param>
         public static string ToLongPersianDateString(this DateTime dt, bool convertToIranTimeZone = true)
         {
-            return dt.ToPersianDateTimeString(PersianCulture.Instance.DateTimeFormat.LongDatePattern, convertToIranTimeZone);
+            return dt.ToPersianDateTimeString(Instance.DateTimeFormat.LongDatePattern, convertToIranTimeZone);
         }
 
         /// <summary>
@@ -954,7 +956,7 @@ namespace Persian.Plus.Core.Extensions
         public static string ToLongPersianDateTimeString(this DateTime dt, bool convertToIranTimeZone = true)
         {
             return dt.ToPersianDateTimeString(
-                $"{PersianCulture.Instance.DateTimeFormat.LongDatePattern}، {PersianCulture.Instance.DateTimeFormat.LongTimePattern}",
+                $"{Instance.DateTimeFormat.LongDatePattern}، {Instance.DateTimeFormat.LongTimePattern}",
                 convertToIranTimeZone);
         }
 
@@ -1007,7 +1009,7 @@ namespace Persian.Plus.Core.Extensions
             {
                 dateTime = dateTime.ToIranTimeZoneDateTime();
             }
-            return dateTime.ToString(format, PersianCulture.Instance);
+            return dateTime.ToString(format, Instance);
         }
 
         /// <summary>
@@ -1096,7 +1098,7 @@ namespace Persian.Plus.Core.Extensions
         /// <param name="convertToIranTimeZone">اگر تاریخ و زمان با فرمت UTC باشند، ابتدا آن‌ها را به منطقه‌ی زمانی ایران تبدیل می‌کند</param>
         public static string ToShortPersianDateString(this DateTime dt, bool convertToIranTimeZone = true)
         {
-            return dt.ToPersianDateTimeString(PersianCulture.Instance.DateTimeFormat.ShortDatePattern, convertToIranTimeZone);
+            return dt.ToPersianDateTimeString(Instance.DateTimeFormat.ShortDatePattern, convertToIranTimeZone);
         }
 
         /// <summary>
@@ -1121,7 +1123,7 @@ namespace Persian.Plus.Core.Extensions
         public static string ToShortPersianDateTimeString(this DateTime dt, bool convertToIranTimeZone = true)
         {
             return dt.ToPersianDateTimeString(
-                $"{PersianCulture.Instance.DateTimeFormat.ShortDatePattern} {PersianCulture.Instance.DateTimeFormat.ShortTimePattern}",
+                $"{Instance.DateTimeFormat.ShortDatePattern} {Instance.DateTimeFormat.ShortTimePattern}",
                 convertToIranTimeZone);
         }
 
@@ -1193,5 +1195,18 @@ namespace Persian.Plus.Core.Extensions
             bool result = int.TryParse(data, NumberStyles.Number, CultureInfo.InvariantCulture, out var number);
             return new Tuple<bool, int>(result, number);
         }
+    }
+
+    public class PersianDay
+    {
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public int Day { get; set; }
+    }
+
+    public class DateRange
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }
