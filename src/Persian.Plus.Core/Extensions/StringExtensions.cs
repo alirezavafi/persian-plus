@@ -23,7 +23,22 @@ namespace Persian.Plus.Core.Extensions
         internal static readonly Regex _hasHalfSpaces =
                     new Regex(@"\u200B|\u200C|\u200E|\u200F",
                         options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
+        
 
+        private const char RightToLeftDirectionChar = (char)0x202B;
+
+        public static string ApplyRtlDirection(this string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return string.Empty;
+            return text.ContainsPersianLettersOrDigits() ? $"{RightToLeftDirectionChar}{text}" : text;
+        }
+
+        public static bool IsRtlDirection(this string text)
+        {
+            return text.StartsWith(RightToLeftDirectionChar);
+        }
+
+        
         public static bool ContainsPersianLettersOrDigits(this string txt)
         {
             return !string.IsNullOrEmpty(txt) &&
