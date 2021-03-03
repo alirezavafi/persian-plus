@@ -8,13 +8,13 @@ namespace Persian.Plus.Core.Extensions.Normalizer
     public static class FixZwnj
     {
         private static readonly Regex _matchApplyHalfSpaceRule1 =
-            new Regex(@"\s+(ن?می)\s+", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: RegexUtils.MatchTimeout);
+            new Regex(@"\s+(ن?می)\s+", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
         private static readonly Regex _matchApplyHalfSpaceRule2 =
-            new Regex(@"\s+(تر(ی(ن)?)?|ها(ی)?)\s+", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: RegexUtils.MatchTimeout);
+            new Regex(@"\s+(تر(ی(ن)?)?|ها(ی)?)\s+", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
         private static readonly Regex _matchCleanupZwnj =
-            new Regex(@"\s+‌|‌\s+", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: RegexUtils.MatchTimeout);
+            new Regex(@"\s+‌|‌\s+", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
         private static readonly Regex _matchYeHeHalfSpace =
-            new Regex(@"(\S)(ه[\s‌]+[یی])(\s)", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: RegexUtils.MatchTimeout);
+            new Regex(@"(\S)(ه[\s‌]+[یی])(\s)", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
 
 
         /// <summary>

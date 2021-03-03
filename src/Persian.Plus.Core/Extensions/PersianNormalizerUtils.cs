@@ -17,7 +17,7 @@ namespace Persian.Plus.Core.Extensions
                 text = text.ToPersianNumbers();
             }
 
-            if (!text.ContainsFarsi())
+            if (!text.ContainsPersianLettersOrDigits())
             {
                 return text;
             }

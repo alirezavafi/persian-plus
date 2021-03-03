@@ -8,7 +8,7 @@ namespace Persian.Plus.Core.Extensions.Normalizer
     public static class FixEnglishQuotes
     {
         private static readonly Regex _matchConvertEnglishQuotes =
-            new Regex(@"([""'`]+)(.+?)(\1)", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: RegexUtils.MatchTimeout);
+            new Regex(@"([""'`]+)(.+?)(\1)", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
 
         /// <summary>
         /// Replaces English quotes with their Persian equivalent.

@@ -19,7 +19,7 @@ namespace Persian.Plus.Core.DataAnnotations
             {
                 return true; // returning false, makes this field required.
             }
-            return value.ToString().ContainsFarsi();
+            return value.ToString().ContainsPersianLettersOrDigits();
         }
     }
 }

@@ -26,7 +26,7 @@
 
             if (text.ContainsThinSpace())
             {
-                result = RegexUtils._hasHalfSpaces.Replace(text, replacement);
+                result = StringExtensions._hasHalfSpaces.Replace(text, replacement);
             }
 
             return result;

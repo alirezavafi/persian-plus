@@ -4,7 +4,7 @@ namespace Persian.Plus.Core.Extensions
 {
     public static class ShebaExtensions
     {
-        private static readonly Regex _matchIranSheba = new Regex(@"IR[0-9]{24}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: RegexUtils.MatchTimeout);
+        private static readonly Regex _matchIranSheba = new Regex(@"IR[0-9]{24}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
 
         public static bool IsShebaNumber(this string iban)
         {

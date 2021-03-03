@@ -17,9 +17,12 @@ namespace Persian.Plus.Core.DataAnnotations
         {
             if (string.IsNullOrWhiteSpace(value as string))
             {
-                return true; // returning false, makes this field required.
+                return true; 
             }
-            return value.ToString().IsValidPersianDateTime();
+
+            PersianDate temp;
+            bool isDateParsed = PersianDate.TryParse(value.ToString(), out temp);
+            return isDateParsed;
         }
     }
 }

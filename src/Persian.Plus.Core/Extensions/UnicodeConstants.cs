@@ -16,7 +16,7 @@
         public static string ApplyRightToLeftDirection(this string text)
         {
             if (string.IsNullOrWhiteSpace(text)) return string.Empty;
-            return text.ContainsFarsi() ? $"{RightToLeftDirectionChar}{text}" : text;
+            return text.ContainsPersianLettersOrDigits() ? $"{RightToLeftDirectionChar}{text}" : text;
         }
     }
 }
