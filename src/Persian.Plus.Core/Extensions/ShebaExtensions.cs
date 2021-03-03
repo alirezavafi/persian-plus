@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Persian.Plus.Core.Extensions.Normalizer;
 
 namespace Persian.Plus.Core.Extensions
 {

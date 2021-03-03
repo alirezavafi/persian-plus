@@ -1,18 +1,13 @@
 ﻿using System;
 
-namespace Persian.Plus.Core.Internal
+namespace Persian.Plus.Core.Extensions.Normalizer
 {
     /// <summary>
     /// Persian Text Normalizers
     /// </summary>
     [Flags]
-    public enum PersianNormalizers : long
+    public enum PersianNormalizerFlags : long
     {
-        /// <summary>
-        /// None
-        /// </summary>
-        None = 0,
-
         /// <summary>
         /// Fixes common writing mistakes caused by using a bad keyboard layout,
         /// such as replacing Arabic Ye with Persian one and so on ...
@@ -63,11 +58,6 @@ namespace Persian.Plus.Core.Internal
         /// Fixes outside and inside spacing for () [] {}  “” «»
         /// </summary>
         RemoveOutsideInsideSpacing = 1 << 9,
-
-        /// <summary>
-        /// Converts English digits of a given number to their equivalent Persian digits
-        /// </summary>
-        ApplyPersianNumbers = 1 << 10,
 
         /// <summary>
         /// حذف اعراب از حروف و کلمات

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Persian.Plus.Core.Internal
+namespace Persian.Plus.Core.Extensions.Number
 {
     /// <summary>
     /// Equivalent names of a group

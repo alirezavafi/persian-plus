@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Persian.Plus.Core.Extensions
+namespace Persian.Plus.Core.Extensions.Normalizer
 {
     public static class StringExtensions
     {
@@ -59,5 +59,80 @@ namespace Persian.Plus.Core.Extensions
         
         public static bool ContainsThinSpace(this string text)
             => _hasHalfSpaces.IsMatch(text);
+        
+        public static string NormalizePersianText(this string text, PersianNormalizerFlags normalizerFlags)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return string.Empty;
+            }
+            
+            if (!text.ContainsPersianLettersOrDigits())
+            {
+                return text;
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.RemoveDiacritics))
+            {
+                text = text.RemoveDiacritics();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.ApplyPersianYeKe))
+            {
+                text = text.ApplyCorrectYeKe();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.ApplyHalfSpaceRule))
+            {
+                text = text.ApplyHalfSpaceRule();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.CleanupZwnj))
+            {
+                text = text.NormalizeZwnj();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.FixDashes))
+            {
+                text = text.NormalizeDashes();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.ConvertDotsToEllipsis))
+            {
+                text = text.NormalizeDotsToEllipsis();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.ConvertEnglishQuotes))
+            {
+                text = text.NormalizeEnglishQuotes();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.CleanupExtraMarks))
+            {
+                text = text.NormalizeExtraMarks();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.RemoveAllKashida))
+            {
+                text = text.NormalizeAllKashida();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.CleanupSpacingAndLineBreaks))
+            {
+                text = text.NormalizeSpacingAndLineBreaks();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.RemoveOutsideInsideSpacing))
+            {
+                text = text.NormalizeOutsideInsideSpacing();
+            }
+
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.RemoveHexadecimalSymbols))
+            {
+                text = text.RemoveHexadecimalSymbols();
+            }
+
+            return text;
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Persian.Plus.Core
+namespace Persian.Plus.Core.Extensions.Normalizer
 {
     /// <summary>
     /// YeKe

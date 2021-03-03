@@ -1,8 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Persian.Plus.Core.Extensions;
 
-namespace Persian.Plus.Core.DataAnnotations
+namespace Persian.Plus.Core.DateTime.DataAnnotations
 {
     /// <summary>
     /// Determines whether the specified value of the object is a valid PersianDateTime.

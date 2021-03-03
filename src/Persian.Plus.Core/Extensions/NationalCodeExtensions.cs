@@ -1,4 +1,6 @@
-﻿namespace Persian.Plus.Core.Extensions
+﻿using Persian.Plus.Core.Extensions.Number;
+
+namespace Persian.Plus.Core.Extensions
 {
     public static class NationalCodeExtensions
     {

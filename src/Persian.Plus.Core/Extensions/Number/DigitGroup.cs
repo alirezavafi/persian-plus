@@ -1,4 +1,4 @@
-namespace Persian.Plus.Core.Internal
+namespace Persian.Plus.Core.Extensions.Number
 {
     /// <summary>
     /// Digit's groups

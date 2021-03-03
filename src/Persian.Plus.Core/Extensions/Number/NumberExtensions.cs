@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Persian.Plus.Core.Internal;
 
-namespace Persian.Plus.Core.Extensions
+namespace Persian.Plus.Core.Extensions.Number
 {
     public static class NumberExtensions
     {

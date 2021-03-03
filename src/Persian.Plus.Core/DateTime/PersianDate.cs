@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 
-namespace Persian.Plus.Core.Extensions
+namespace Persian.Plus.Core.DateTime
 {
     public class PersianDate
     {
@@ -14,7 +13,7 @@ namespace Persian.Plus.Core.Extensions
             CultureInfo = GetPersianCulture();
         }
         
-        public PersianDate(DateTime dateTime) : this()
+        public PersianDate(System.DateTime dateTime) : this()
         {
             DateTime = dateTime;
             this.Year = Calendar.GetYear(dateTime);
@@ -32,7 +31,7 @@ namespace Persian.Plus.Core.Extensions
         
         public PersianCalendar Calendar { get; } = new PersianCalendar();
         public CultureInfo CultureInfo { get; }
-        public DateTime DateTime { get; }
+        public System.DateTime DateTime { get; }
         public int Year { get; }
         public int Month { get; }
         public int Day { get; }
@@ -192,8 +191,8 @@ namespace Persian.Plus.Core.Extensions
             }
         }
         
-        public static PersianDate Now => new PersianDate(DateTime.Now);
-        public static implicit operator DateTime(PersianDate d) => d.DateTime;
-        public static implicit operator PersianDate(DateTime d) => new PersianDate(d);
+        public static PersianDate Now => new PersianDate(System.DateTime.Now);
+        public static implicit operator System.DateTime(PersianDate d) => d.DateTime;
+        public static implicit operator PersianDate(System.DateTime d) => new PersianDate(d);
     }
 }
