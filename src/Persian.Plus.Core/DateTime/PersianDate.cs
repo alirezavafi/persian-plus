@@ -167,10 +167,9 @@ namespace Persian.Plus.Core.DateTime
             }
 
             var parts = s.Split(new[] {'/', '-', ','});
-            var temp = 0;
-            if (parts.Length != 3 || parts.Any(x => int.TryParse(x, out temp)))
+            if (parts.Length != 3 || parts.Any(x => int.TryParse(x.TrimStart('0'), out var temp)))
             {
-                throw new FormatException();
+                throw new FormatException("invalid input");
             }
 
             var parsedParts = parts.Select(int.Parse).ToList();
