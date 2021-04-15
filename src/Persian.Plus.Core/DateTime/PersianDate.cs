@@ -21,17 +21,18 @@ namespace Persian.Plus.Core.DateTime
             this.Day = Calendar.GetDayOfMonth(dateTime);
         }
 
-        public PersianDate(int year, int month, int day) : this()
+        public PersianDate(int year, int month, int day, int hour = 0, int second = 0, int milisecond = 0) : this()
         {
-           this.DateTime =  Calendar.ToDateTime(year, month, day, 0, 0, 0, 0);
-           this.Year = year;
-           this.Month = month;
-           this.Day = day;
+            this.DateTime =  Calendar.ToDateTime(year, month, day, 0, 0, 0, 0);
+            this.Year = year;
+            this.Month = month;
+            this.Day = day;
         }
-        
+
         public PersianCalendar Calendar { get; } = new PersianCalendar();
         public CultureInfo CultureInfo { get; }
         public System.DateTime DateTime { get; }
+        public TimeSpan TimeOfDay => DateTime.TimeOfDay;
         public int Year { get; }
         public int Month { get; }
         public int Day { get; }
@@ -166,13 +167,18 @@ namespace Persian.Plus.Core.DateTime
                 throw new FormatException();
             }
 
-            var parts = s.Split(new[] {'/', '-', ','});
-            if (parts.Length != 3 || parts.Any(x => int.TryParse(x.TrimStart('0'), out var temp)))
+            var parts = s.Split(new[] {'/', '-', ',', ' ', ':'}, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 3 || parts.Any(x => int.TryParse(x.TrimStart('0'), out var temp)))
             {
                 throw new FormatException("invalid input");
             }
 
             var parsedParts = parts.Select(int.Parse).ToList();
+            if (parsedParts.Count >= 6)
+            {
+                return new PersianDate(parsedParts[0], parsedParts[1], parsedParts[2], parsedParts[3], parsedParts[4], parsedParts[5]);
+            }
+
             return new PersianDate(parsedParts[0], parsedParts[1], parsedParts[2]);
         }
 
