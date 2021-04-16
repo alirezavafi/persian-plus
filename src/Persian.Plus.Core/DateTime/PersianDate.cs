@@ -21,9 +21,9 @@ namespace Persian.Plus.Core.DateTime
             this.Day = Calendar.GetDayOfMonth(dateTime);
         }
 
-        public PersianDate(int year, int month, int day, int hour = 0, int second = 0, int milisecond = 0) : this()
+        public PersianDate(int year, int month, int day, int hour = 0, int minute = 0, int second = 0, int milisecond = 0) : this()
         {
-            this.DateTime =  Calendar.ToDateTime(year, month, day, 0, 0, 0, 0);
+            this.DateTime =  Calendar.ToDateTime(year, month, day, hour, minute, second, milisecond);
             this.Year = year;
             this.Month = month;
             this.Day = day;
@@ -167,8 +167,8 @@ namespace Persian.Plus.Core.DateTime
                 throw new FormatException();
             }
 
-            var parts = s.Split(new[] {'/', '-', ',', ' ', ':'}, StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length < 3 || parts.Any(x => int.TryParse(x.TrimStart('0'), out var temp)))
+            var parts = s.Split(new[] {'/', '-', ',', ' ','.', ':'}, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 3 || parts.Any(x => !int.TryParse(x.TrimStart('0'), out var temp)))
             {
                 throw new FormatException("invalid input");
             }
