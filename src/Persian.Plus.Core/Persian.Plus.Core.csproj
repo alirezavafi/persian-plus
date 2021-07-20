@@ -7,7 +7,7 @@
         <Description>An extended persian tools based on community open source projects</Description>
         <PackageProjectUrl>https://github.com/alirezavafi/persian-plus</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/alirezavafi/persian-plus</PackageLicenseUrl>
-        <PackageVersion>1.0.3</PackageVersion>
+        <PackageVersion>1.0.4</PackageVersion>
         <PackageId>Persian.Plus</PackageId>
     </PropertyGroup>
 

@@ -24,7 +24,7 @@ namespace Persian.Plus.Core.DateTime
             switch (calenderType)
             {
                 case CalenderType.PersianCalendar:
-                    this.DateTime = new PersianDate(year, month, day);
+                    this.DateTime = new PersianDateTime(year, month, day);
                     break;
                 case CalenderType.HijriCalendar:
                     this.DateTime = new HijriDate(year, month, day);

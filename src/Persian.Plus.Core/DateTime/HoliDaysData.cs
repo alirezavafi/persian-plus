@@ -27,8 +27,8 @@ namespace Persian.Plus.Core.DateTime
                 startYear++;
             } while (startYear <= hijriEndDate.Year);
 
-            var persianStartDate = new PersianDate(gregorianStartDate);
-            var persianEndDate = new PersianDate(gregorianEndDate);
+            var persianStartDate = new PersianDateTime(gregorianStartDate);
+            var persianEndDate = new PersianDateTime(gregorianEndDate);
             startYear = persianStartDate.Year;
             do
             {

@@ -4,7 +4,7 @@ namespace Persian.Plus.Core.DateTime
 {
     public static class HolidayExtensions
     {
-        public static IEnumerable<EventDay> GetEvents(this System.DateTime date)
+        public static IEnumerable<EventDay> GetEvents(this PersianDateTime date)
         {
             return new HoliDaysData().GetEventsByDateRange(new DateRange()
             {
@@ -12,5 +12,15 @@ namespace Persian.Plus.Core.DateTime
                 EndDate = date,
             });
         }
+        
+        public static IEnumerable<EventDay> GetEventsTill(this PersianDateTime from, PersianDateTime to)
+        {
+            return new HoliDaysData().GetEventsByDateRange(new DateRange()
+            {
+                StartDate = from,
+                EndDate = to,
+            });
+        }
+
     }
 }

@@ -19,8 +19,8 @@ namespace Persian.Plus.Core.DateTime.DataAnnotations
                 return true; 
             }
 
-            PersianDate temp;
-            bool isDateParsed = PersianDate.TryParse(value.ToString(), out temp);
+            PersianDateTime temp;
+            bool isDateParsed = PersianDateTime.TryParse(value.ToString(), out temp);
             return isDateParsed;
         }
     }
