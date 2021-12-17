@@ -193,13 +193,13 @@ namespace Persian.Plus.Core.DateTime
         {
             if (string.IsNullOrWhiteSpace(s))
             {
-                throw new FormatException();
+                throw new FormatException($"Invalid Value {s}");
             }
 
             var parts = s.Split(new[] {'/', '-', ',', ' ', '.', ':'}, StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length < 3 || parts.Any(x => !int.TryParse(x.TrimStart('0'), out var temp)))
+            if (parts.Length < 3 || parts.Any(x => !int.TryParse(x, out var temp)))
             {
-                throw new FormatException("invalid input");
+                throw new FormatException($"Invalid Value {s}");
             }
 
             var parsedParts = parts.Select(int.Parse).ToList();
