@@ -196,6 +196,28 @@ namespace Persian.Plus.Core.DateTime
                 throw new FormatException($"Invalid Value {s}");
             }
 
+            if (long.TryParse(s, out var num))
+            {
+                if (s.Trim().Length == 8)
+                {
+                    return new PersianDateTime(int.Parse(s.Substring(0, 4)), int.Parse(s.Substring(4, 2)), int.Parse(s.Substring(6, 2))); 
+                }
+                else if (s.Trim().Length == 14)
+                {
+                    return new PersianDateTime(int.Parse(s.Substring(0, 4)), int.Parse(s.Substring(4, 2)), int.Parse(s.Substring(6, 2)),
+                        int.Parse(s.Substring(8, 2)), int.Parse(s.Substring(10, 2)), int.Parse(s.Substring(12, 2))); 
+                }
+                if (s.Trim().Length == 10)
+                {
+                    return new PersianDateTime(DateTimeOffset.FromUnixTimeSeconds(num).LocalDateTime);
+                }
+                else if (s.Trim().Length == 13)
+                {
+                    return new PersianDateTime(DateTimeOffset.FromUnixTimeMilliseconds(num).LocalDateTime);
+                }
+
+                return new PersianDateTime(new System.DateTime(num));
+            }
             var parts = s.Split(new[] {'/', '-', ',', ' ', '.', ':'}, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length < 3 || parts.Any(x => !int.TryParse(x, out var temp)))
             {
