@@ -8,7 +8,7 @@ namespace Persian.Plus.Core.DataAnnotations
     /// Determines whether the specified value of the object is a valid IranianNationalCode.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter)]
-    public sealed class NationalCodeAttribute : ValidationAttribute
+    public sealed class IranianNationalCodeAttribute : ValidationAttribute
     {
         /// <summary>
         /// Determines whether the specified value of the object is valid.
@@ -19,7 +19,7 @@ namespace Persian.Plus.Core.DataAnnotations
             {
                 return true; // returning false, makes this field required.
             }
-            return value.ToString().IsNationalCode();
+            return value.ToString().IsIranianNationalCode();
         }
     }
 }

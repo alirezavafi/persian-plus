@@ -5,10 +5,10 @@ using Persian.Plus.Core.Extensions;
 namespace Persian.Plus.Core.DataAnnotations
 {
     /// <summary>
-    /// Determines whether the specified value of the object is a valid IranShebaNumber.
+    /// Determines whether the specified value of the object is a valid IranianNationalCode.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter)]
-    public sealed class IranIbanAttribute : ValidationAttribute
+    public sealed class IranianNationalLegalCodeAttribute : ValidationAttribute
     {
         /// <summary>
         /// Determines whether the specified value of the object is valid.
@@ -19,7 +19,7 @@ namespace Persian.Plus.Core.DataAnnotations
             {
                 return true; // returning false, makes this field required.
             }
-            return value.ToString().IsShebaNumber();
+            return value.ToString().IsIranianNationalLegalCode();
         }
     }
 }

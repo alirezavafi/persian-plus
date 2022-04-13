@@ -4,11 +4,11 @@ using Persian.Plus.Core.Extensions.Normalizer;
 
 namespace Persian.Plus.Core.Extensions
 {
-    public static class ShetabCardExtensions
+    public static class IranianShetabCardExtensions
     {
         private static readonly Regex _matchIranShetab = new Regex(@"[0-9]{16}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
 
-        public static bool IsShetabCardNumber(this string creditCardNumber)
+        public static bool IsIranianShetabCardNumber(this string creditCardNumber)
         {
             if (string.IsNullOrEmpty(creditCardNumber))
             {

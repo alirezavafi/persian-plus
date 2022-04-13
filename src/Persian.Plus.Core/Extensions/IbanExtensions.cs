@@ -3,11 +3,11 @@ using Persian.Plus.Core.Extensions.Normalizer;
 
 namespace Persian.Plus.Core.Extensions
 {
-    public static class ShebaExtensions
+    public static class IbanExtensions
     {
         private static readonly Regex _matchIranSheba = new Regex(@"IR[0-9]{24}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
 
-        public static bool IsShebaNumber(this string iban)
+        public static bool IsIbanNumber(this string iban)
         {
             if (string.IsNullOrEmpty(iban))
             {

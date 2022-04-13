@@ -2,9 +2,9 @@
 
 namespace Persian.Plus.Core.Extensions
 {
-    public static class NationalLegalCodeExtensions
+    public static class IranianNationalLegalCodeExtensions
     {
-        public static bool IsNationalLegalCode(this string nationalLegalCode)
+        public static bool IsIranianNationalLegalCode(this string nationalLegalCode)
         {
             if (string.IsNullOrWhiteSpace(nationalLegalCode))
             {
