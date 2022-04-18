@@ -1,3 +1,4 @@
+using System.Data;
 using FluentValidation;
 
 namespace Persian.Plus.FluentValidation.Tests.Common.Model
@@ -8,6 +9,10 @@ namespace Persian.Plus.FluentValidation.Tests.Common.Model
         {
             RuleFor(x => x.NationalCode)
                 .IranianNationalCode();
+            RuleFor(x => x.PostalCode)
+                .IranianPostalCode();
+            RuleFor(x => x.MobileNumber)
+                .IranianMobileNumber();
         }
     }
 }

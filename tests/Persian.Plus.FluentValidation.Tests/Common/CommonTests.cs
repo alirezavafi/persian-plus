@@ -38,6 +38,79 @@ namespace Persian.Plus.FluentValidation.Tests.Common
             
             Assert.IsFalse(results.IsValid);
         }
+        
+        [Test]
+        public void Validator_Validate_Valid_IranianPostalCode()
+        {
+            var c = new PersonInfo()
+            {
+                PostalCode = "3149813475"
+            };
+
+            var results = _validator.Validate(c);
+            
+            Assert.IsTrue(results.IsValid);
+        }
+        
+        [Test]
+        public void Validator_Validate_NotValid_IranianPostalCode()
+        {
+            var c1 = new PersonInfo() { PostalCode = "1234324" };
+            var c2 = new PersonInfo() { PostalCode = "3145435123" };
+
+            var result1 = _validator.Validate(c1);
+            var result2 = _validator.Validate(c2);
+            
+            Assert.IsFalse(result1.IsValid);
+            Assert.IsFalse(result2.IsValid);
+        }
+        
+        [Test]
+        public void Validator_Validate_Valid_IranianMobileNumber()
+        {
+            var c1 = new PersonInfo() { MobileNumber = "09361234567" };
+            var c2 = new PersonInfo() { MobileNumber = "989121234567" };
+            var c3 = new PersonInfo() { MobileNumber = "+989121234567" };
+            var c4 = new PersonInfo() { MobileNumber = "9809121234567" };
+            var c5 = new PersonInfo() { MobileNumber = "00989121234567" };
+            var c6 = new PersonInfo() { MobileNumber = "9121234567" };
+            var c7 = new PersonInfo() { MobileNumber = "9021234567" };
+
+            var res1 = _validator.Validate(c1);
+            var res2 = _validator.Validate(c2);
+            var res3 = _validator.Validate(c3);
+            var res4 = _validator.Validate(c4);
+            var res5 = _validator.Validate(c5);
+            var res6 = _validator.Validate(c6);
+            var res7 = _validator.Validate(c7);
+            
+            Assert.IsTrue(res1.IsValid);
+            Assert.IsTrue(res2.IsValid);
+            Assert.IsTrue(res3.IsValid);
+            Assert.IsTrue(res4.IsValid);
+            Assert.IsTrue(res5.IsValid);
+            Assert.IsTrue(res6.IsValid);
+            Assert.IsTrue(res7.IsValid);
+        }
+        
+        [Test]
+        public void Validator_Validate_NotValid_IranianMobileNumber()
+        {
+            var c1 = new PersonInfo() { MobileNumber = "8021234567" };
+            var c2 = new PersonInfo() { MobileNumber = "988021234567" };
+            var c3 = new PersonInfo() { MobileNumber = "+988021234567" };
+            var c4 = new PersonInfo() { MobileNumber = "008021234567" };
+
+            var res1 = _validator.Validate(c1);
+            var res2 = _validator.Validate(c2);
+            var res3 = _validator.Validate(c3);
+            var res4 = _validator.Validate(c4);
+            
+            Assert.IsFalse(res1.IsValid);
+            Assert.IsFalse(res2.IsValid);
+            Assert.IsFalse(res3.IsValid);
+            Assert.IsFalse(res4.IsValid);
+        }
     }
 }
 

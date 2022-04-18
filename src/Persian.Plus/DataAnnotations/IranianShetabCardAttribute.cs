@@ -4,15 +4,9 @@ using Persian.Plus.Extensions;
 
 namespace Persian.Plus.DataAnnotations
 {
-    /// <summary>
-    /// Determines whether the specified value of the object is a valid IranShetabNumber.
-    /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter)]
     public sealed class IranianShetabCardAttribute : ValidationAttribute
     {
-        /// <summary>
-        /// Determines whether the specified value of the object is valid.
-        /// </summary>
         public override bool IsValid(object value)
         {
             if (string.IsNullOrWhiteSpace(value as string))
