@@ -1,0 +1,27 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Persian.Plus.DateTime.DataAnnotations
+{
+    /// <summary>
+    /// Determines whether the specified value of the object is a valid PersianDateTime.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter)]
+    public sealed class PersianDateTimeAttribute : ValidationAttribute
+    {
+        /// <summary>
+        /// Determines whether the specified value of the object is valid.
+        /// </summary>
+        public override bool IsValid(object value)
+        {
+            if (string.IsNullOrWhiteSpace(value as string))
+            {
+                return true; 
+            }
+
+            PersianDateTime temp;
+            bool isDateParsed = PersianDateTime.TryParse(value.ToString(), out temp);
+            return isDateParsed;
+        }
+    }
+}

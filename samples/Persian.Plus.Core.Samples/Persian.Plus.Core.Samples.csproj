@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Persian.Plus.Core\Persian.Plus.Core.csproj" />
+      <ProjectReference Include="..\..\src\Persian.Plus\Persian.Plus.csproj" />
     </ItemGroup>
 
 </Project>

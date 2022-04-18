@@ -10,11 +10,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persian.Plus.Core", "src\Persian.Plus.Core\Persian.Plus.Core.csproj", "{DCE5958C-556E-4BFA-A553-6A0098E5ECD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persian.Plus", "src\Persian.Plus\Persian.Plus.csproj", "{DCE5958C-556E-4BFA-A553-6A0098E5ECD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persian.Plus.Core.Samples", "samples\Persian.Plus.Core.Samples\Persian.Plus.Core.Samples.csproj", "{95EBEBD3-F9CA-4059-BE8F-097B563836FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{A9C1CF52-0351-4D17-A5C7-6FB9BD45EB2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persian.Plus.FluentValidation", "src\Persian.Plus.FluentValidation\Persian.Plus.FluentValidation.csproj", "{FFCE82CE-43F6-4C7A-A700-9A640F2F6B1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{028604E3-AE69-4341-AB03-3BBA0F91C12C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persian.Plus.Tests", "tests\Persian.Plus.Tests\Persian.Plus.Tests.csproj", "{2F3D3602-A909-4EC0-884F-B9680E139EC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persian.Plus.FluentValidation.Tests", "Persian.Plus.FluentValidation.Tests\Persian.Plus.FluentValidation.Tests.csproj", "{84DF00FE-FCEC-4183-AFDA-E9D78B4C63D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +38,18 @@ Global
 		{95EBEBD3-F9CA-4059-BE8F-097B563836FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{95EBEBD3-F9CA-4059-BE8F-097B563836FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{95EBEBD3-F9CA-4059-BE8F-097B563836FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCE82CE-43F6-4C7A-A700-9A640F2F6B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCE82CE-43F6-4C7A-A700-9A640F2F6B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFCE82CE-43F6-4C7A-A700-9A640F2F6B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCE82CE-43F6-4C7A-A700-9A640F2F6B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3D3602-A909-4EC0-884F-B9680E139EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F3D3602-A909-4EC0-884F-B9680E139EC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F3D3602-A909-4EC0-884F-B9680E139EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3D3602-A909-4EC0-884F-B9680E139EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84DF00FE-FCEC-4183-AFDA-E9D78B4C63D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84DF00FE-FCEC-4183-AFDA-E9D78B4C63D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84DF00FE-FCEC-4183-AFDA-E9D78B4C63D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84DF00FE-FCEC-4183-AFDA-E9D78B4C63D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +57,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DCE5958C-556E-4BFA-A553-6A0098E5ECD3} = {28417517-CA05-4924-8F33-0CE11400F296}
 		{95EBEBD3-F9CA-4059-BE8F-097B563836FB} = {A9C1CF52-0351-4D17-A5C7-6FB9BD45EB2F}
+		{FFCE82CE-43F6-4C7A-A700-9A640F2F6B1E} = {28417517-CA05-4924-8F33-0CE11400F296}
+		{2F3D3602-A909-4EC0-884F-B9680E139EC0} = {028604E3-AE69-4341-AB03-3BBA0F91C12C}
+		{84DF00FE-FCEC-4183-AFDA-E9D78B4C63D3} = {028604E3-AE69-4341-AB03-3BBA0F91C12C}
 	EndGlobalSection
 EndGlobal

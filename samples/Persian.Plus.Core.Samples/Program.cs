@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Persian.Plus.Core.DateTime;
+using Persian.Plus.DateTime;
 
 namespace Persian.Plus.Core.Samples
 {
