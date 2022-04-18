@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\Persian.Plus.FluentValidation\Persian.Plus.FluentValidation.csproj" />
+      <ProjectReference Include="..\..\src\Persian.Plus.FluentValidation\Persian.Plus.FluentValidation.csproj" />
     </ItemGroup>
 
 </Project>
