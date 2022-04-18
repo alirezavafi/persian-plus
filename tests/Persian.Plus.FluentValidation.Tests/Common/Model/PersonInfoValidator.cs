@@ -13,6 +13,10 @@ namespace Persian.Plus.FluentValidation.Tests.Common.Model
                 .IranianPostalCode();
             RuleFor(x => x.MobileNumber)
                 .IranianMobileNumber();
+            RuleFor(x => x.NationalLegalCode)
+                .IranianNationalLegalCode();
+            RuleFor(x => x.Name)
+                .PersianLetters();
         }
     }
 }

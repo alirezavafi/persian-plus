@@ -14,10 +14,10 @@ namespace Persian.Plus.Extensions.Normalizer
             new Regex(@"[\u0600-\u06FF,\u0590-\u05FF,«,»]", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
 
         private static readonly Regex _matchOnlyPersianNumbersRange =
-            new Regex(@"^[\u06F0-\u06F9]+$", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
+            new Regex(@"^[\u06F0-\u06F9 ]+$", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
 
         private static readonly Regex _matchOnlyPersianLetters =
-            new Regex(@"^[\\s,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
+            new Regex(@"^[\s,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
                 options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
 
         internal static readonly Regex _hasHalfSpaces =
@@ -47,8 +47,8 @@ namespace Persian.Plus.Extensions.Normalizer
 
         public static bool ContainsOnlyPersianLetters(this string txt)
         {
-            return !string.IsNullOrEmpty(txt) &&
-                   _matchOnlyPersianLetters.IsMatch(txt);
+            var containsOnlyPersianLetters = !string.IsNullOrEmpty(txt) && _matchOnlyPersianLetters.IsMatch(txt);
+            return containsOnlyPersianLetters;
         }
        
         public static bool ContainsOnlyPersianDigits(this string text)

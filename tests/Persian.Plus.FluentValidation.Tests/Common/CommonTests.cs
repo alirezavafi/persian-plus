@@ -14,6 +14,32 @@ namespace Persian.Plus.FluentValidation.Tests.Common
         }
 
         [Test]
+        public void Validator_Validate_Valid_Persian_Letters_Only()
+        {
+            var c = new PersonInfo() { Name = "علیرضا وفی" };
+
+            var res = _validator.Validate(c);
+            
+            Assert.IsTrue(res.IsValid);
+        }
+        
+        [Test]
+        public void Validator_Validate_NotValid_Persian_Letters_Only()
+        {
+            var c1 = new PersonInfo() { NationalCode = "علیرضا وفی 123" };
+            var c2 = new PersonInfo() { NationalCode = "علیرضا وفی Alireza Vafi" };
+            var c3 = new PersonInfo() { NationalCode = "Alireza Vafi" };
+
+            var res1 = _validator.Validate(c1);
+            var res2 = _validator.Validate(c2);
+            var res3 = _validator.Validate(c3);
+            
+            Assert.IsFalse(res1.IsValid);
+            Assert.IsFalse(res2.IsValid);
+            Assert.IsFalse(res3.IsValid);
+        }
+        
+        [Test]
         public void Validator_Validate_Valid_IranianNationalCodeNumber()
         {
             var c = new PersonInfo()
@@ -32,6 +58,32 @@ namespace Persian.Plus.FluentValidation.Tests.Common
             var c = new PersonInfo()
             {
                 NationalCode = "0791210803"
+            };
+
+            var results = _validator.Validate(c);
+            
+            Assert.IsFalse(results.IsValid);
+        }
+        
+        [Test]
+        public void Validator_Validate_Valid_IranianNationalLegalCodeNumber()
+        {
+            var c = new PersonInfo()
+            {
+                NationalLegalCode = "14008071029"
+            };
+
+            var results = _validator.Validate(c);
+            
+            Assert.IsTrue(results.IsValid);
+        }
+        
+        [Test]
+        public void Validator_Validate_NotValid_IranianNationalLegalCodeNumber()
+        {
+            var c = new PersonInfo()
+            {
+                NationalLegalCode = "14008071128"
             };
 
             var results = _validator.Validate(c);
