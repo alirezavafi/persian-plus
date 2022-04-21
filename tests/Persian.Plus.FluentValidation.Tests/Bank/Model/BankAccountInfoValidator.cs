@@ -7,9 +7,9 @@ namespace Persian.Plus.FluentValidation.Tests.Bank.Model
         public BankAccountInfoValidator()
         {
             RuleFor(x => x.IbanNumber)
-                .IbanNumber();
+                .IranianIbanNumber();
             RuleFor(x => x.ShetabCardNumber)
-                .ShetabCardNumber();
+                .IranianShetabCardNumber();
         }
     }
 }

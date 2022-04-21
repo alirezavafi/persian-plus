@@ -4,22 +4,16 @@ using Persian.Plus.Extensions;
 
 namespace Persian.Plus.DataAnnotations
 {
-    /// <summary>
-    /// Determines whether the specified value of the object is a valid IranShebaNumber.
-    /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter)]
-    public sealed class IbanAttribute : ValidationAttribute
+    public sealed class PersianOrEnglishLettersOrDigitsAttribute : ValidationAttribute
     {
-        /// <summary>
-        /// Determines whether the specified value of the object is valid.
-        /// </summary>
         public override bool IsValid(object value)
         {
             if (string.IsNullOrWhiteSpace(value as string))
             {
                 return true; // returning false, makes this field required.
             }
-            return value.ToString().IsValidIbanNumber();
+            return value.ToString().ContainsOnlyPersianOrEnglishLettersOrDigits();
         }
     }
 }

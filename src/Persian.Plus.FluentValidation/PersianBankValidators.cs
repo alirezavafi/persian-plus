@@ -6,14 +6,14 @@ namespace Persian.Plus.FluentValidation
 {
     public static class PersianBankValidators
     {
-        public static IRuleBuilderOptions<T, string> IbanNumber<T>(this IRuleBuilder<T, string> ruleBuilder,
+        public static IRuleBuilderOptions<T, string> IranianIbanNumber<T>(this IRuleBuilder<T, string> ruleBuilder,
             params string[][] bankCodes)
         {
             return ruleBuilder.Must(str =>
                 {
                     if (string.IsNullOrWhiteSpace(str))
                         return true;
-                    var isValidIban = str.IsValidIbanNumber();
+                    var isValidIban = str.IsValidIranianIbanNumber();
                     if (bankCodes == null || bankCodes.Length == 0)
                         return isValidIban;
 
@@ -23,7 +23,7 @@ namespace Persian.Plus.FluentValidation
                 .WithMessage("Iban is not valid");
         }
 
-        public static IRuleBuilderOptions<T, string> ShetabCardNumber<T>(this IRuleBuilder<T, string> ruleBuilder, params string[][] cardBins)
+        public static IRuleBuilderOptions<T, string> IranianShetabCardNumber<T>(this IRuleBuilder<T, string> ruleBuilder, params string[][] cardBins)
         {
             return ruleBuilder.Must(str =>
                 {

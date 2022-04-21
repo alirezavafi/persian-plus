@@ -4,7 +4,7 @@ using Persian.Plus.Extensions.Normalizer;
 
 namespace Persian.Plus.Extensions
 {
-    public static class IbanExtensions
+    public static class IranianIbanExtensions
     {
         private static readonly Regex _matchIranSheba = new Regex(@"IR[0-9]{24}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
 
@@ -18,7 +18,7 @@ namespace Persian.Plus.Extensions
             return ibanBankCode == bankCode;
         }
         
-        public static bool IsValidIbanNumber(this string iban)
+        public static bool IsValidIranianIbanNumber(this string iban)
         {
             if (string.IsNullOrEmpty(iban))
             {

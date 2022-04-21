@@ -7,9 +7,9 @@ namespace Persian.Plus.FluentValidation.Tests.Bank.Model
         public MelliOrPassargadAccountValidator()
         {
             RuleFor(x => x.IbanNumber)
-                .IbanNumber(IranBankConstants.BankCodes.Melli, IranBankConstants.BankCodes.Passargad);
+                .IranianIbanNumber(IranBankConstants.BankCodes.Melli, IranBankConstants.BankCodes.Passargad);
             RuleFor(x => x.ShetabCardNumber)
-                .ShetabCardNumber(IranBankConstants.BankCardBins.Melli, IranBankConstants.BankCardBins.Passargad);
+                .IranianShetabCardNumber(IranBankConstants.BankCardBins.Melli, IranBankConstants.BankCardBins.Passargad);
         }
     }
 }
