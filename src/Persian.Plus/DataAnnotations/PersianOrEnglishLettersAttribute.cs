@@ -6,7 +6,7 @@ using Persian.Plus.Extensions.Normalizer;
 namespace Persian.Plus.DataAnnotations
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter)]
-    public sealed class PersianLettersAttribute : ValidationAttribute
+    public sealed class PersianOrEnglishLettersAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
@@ -14,7 +14,7 @@ namespace Persian.Plus.DataAnnotations
             {
                 return true; // returning false, makes this field required.
             }
-            return value.ToString().ContainsOnlyPersianLetters();
+            return value.ToString().ContainsOnlyPersianOrEnglishLetters();
         }
     }
 }

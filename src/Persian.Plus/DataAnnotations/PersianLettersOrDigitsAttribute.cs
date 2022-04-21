@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Persian.Plus.Extensions;
 using Persian.Plus.Extensions.Normalizer;
 
 namespace Persian.Plus.DataAnnotations

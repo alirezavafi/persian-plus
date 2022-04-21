@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Persian.Plus.Extensions;
+using Persian.Plus.Extensions.Normalizer;
 
 namespace Persian.Plus.Tests
 {
@@ -9,6 +10,30 @@ namespace Persian.Plus.Tests
         [SetUp]
         public void Setup()
         {
+        }
+
+        [Test]
+        public void ContainsOnlyPersianOrEnglishLetters_Must_Match_Valid_Value()
+        {
+            var c1 = "علیرضا وفی";
+            var c2 = "Alireza Vafi";
+            var c3 = "علیرضا وفی Alireza Vafi";
+
+            Assert.IsTrue(c1.ContainsOnlyPersianOrEnglishLetters());
+            Assert.IsTrue(c2.ContainsOnlyPersianOrEnglishLetters());
+            Assert.IsTrue(c3.ContainsOnlyPersianOrEnglishLetters());
+        }
+
+        [Test]
+        public void ContainsOnlyPersianOrEnglishLetters_Must_Not_Match_Invalid_Value()
+        {
+            var c1 = "علیرضا وفی 123";
+            var c2 = "Alireza Vafi !=%";
+            var c3 = "+ 1 علیرضا وفی Alireza Vafi";
+
+            Assert.IsFalse(c1.ContainsOnlyPersianOrEnglishLetters());
+            Assert.IsFalse(c2.ContainsOnlyPersianOrEnglishLetters());
+            Assert.IsFalse(c3.ContainsOnlyPersianOrEnglishLetters());
         }
 
         [Test]

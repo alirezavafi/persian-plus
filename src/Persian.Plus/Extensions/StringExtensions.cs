@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Persian.Plus.Extensions.Normalizer;
 
-namespace Persian.Plus.Extensions.Normalizer
+namespace Persian.Plus.Extensions
 {
     public static class StringExtensions
     {
@@ -18,6 +19,10 @@ namespace Persian.Plus.Extensions.Normalizer
 
         private static readonly Regex _matchOnlyPersianLetters =
             new Regex(@"^[\s,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
+                options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
+
+        private static readonly Regex _matchOnlyPersianOrEnglishLetters =
+            new Regex(@"^[\s,A-Za-z,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
                 options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
 
         internal static readonly Regex _hasHalfSpaces =
@@ -50,7 +55,13 @@ namespace Persian.Plus.Extensions.Normalizer
             var containsOnlyPersianLetters = !string.IsNullOrEmpty(txt) && _matchOnlyPersianLetters.IsMatch(txt);
             return containsOnlyPersianLetters;
         }
-       
+        
+        public static bool ContainsOnlyPersianOrEnglishLetters(this string txt)
+        {
+            var containsOnlyPersianOrEnglishLetters = !string.IsNullOrEmpty(txt) && (_matchOnlyPersianOrEnglishLetters.IsMatch(txt));
+            return containsOnlyPersianOrEnglishLetters;
+        }
+
         public static bool ContainsOnlyPersianDigits(this string text)
         {
             return !string.IsNullOrEmpty(text) &&
