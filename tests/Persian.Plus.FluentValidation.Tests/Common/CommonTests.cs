@@ -26,9 +26,9 @@ namespace Persian.Plus.FluentValidation.Tests.Common
         [Test]
         public void Validator_Validate_NotValid_Persian_Letters_Only()
         {
-            var c1 = new PersonInfo() { NationalCode = "علیرضا وفی 123" };
-            var c2 = new PersonInfo() { NationalCode = "علیرضا وفی Alireza Vafi" };
-            var c3 = new PersonInfo() { NationalCode = "Alireza Vafi" };
+            var c1 = new PersonInfo() { Name = "علیرضا وفی 123" };
+            var c2 = new PersonInfo() { Name = "علیرضا وفی Alireza Vafi" };
+            var c3 = new PersonInfo() { Name = "Alireza Vafi" };
 
             var res1 = _validator.Validate(c1);
             var res2 = _validator.Validate(c2);
@@ -38,7 +38,7 @@ namespace Persian.Plus.FluentValidation.Tests.Common
             Assert.IsFalse(res2.IsValid);
             Assert.IsFalse(res3.IsValid);
         }
-        
+
         [Test]
         public void Validator_Validate_Valid_IranianNationalCodeNumber()
         {
