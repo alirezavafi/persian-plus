@@ -21,7 +21,17 @@ namespace Persian.Plus.Extensions
                 throw new FormatException("Invalid mobile number: " + mobileNumber);
             
             var m = _matchIranianMobileNumber1.Match(mobileNumber);
-            return m.Groups["mobileNo"].Value;
+            return '0' + m.Groups["mobileNo"].Value;
+        }
+        
+        public static string MaskIranianMobileNumber(this string mobileNumber, bool inverse = false)
+        {
+            if (!mobileNumber.IsValidIranianMobileNumber())
+                throw new FormatException("Invalid mobile number: " + mobileNumber);
+            mobileNumber = mobileNumber.CoerceIranianMobileNumber();
+            if (inverse)
+                return mobileNumber.Substring(9) + "****" + mobileNumber.Substring(0, 6);
+            return mobileNumber.Substring(0, 6) + "xxx" + mobileNumber.Substring(9);
         }
     }
 }

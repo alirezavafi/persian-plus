@@ -72,7 +72,7 @@ namespace Persian.Plus.Tests
             var c5 = "00989121234567";
             var c6 = "9121234567";
 
-            var expectedValue = "9121234567";
+            var expectedValue = "09121234567";
             
             Assert.AreEqual(expectedValue, c1.CoerceIranianMobileNumber());
             Assert.AreEqual(expectedValue, c2.CoerceIranianMobileNumber());
@@ -80,6 +80,27 @@ namespace Persian.Plus.Tests
             Assert.AreEqual(expectedValue, c4.CoerceIranianMobileNumber());
             Assert.AreEqual(expectedValue, c5.CoerceIranianMobileNumber());
             Assert.AreEqual(expectedValue, c6.CoerceIranianMobileNumber());
+        }
+        
+        
+        [Test]
+        public void MobileNumber_Must_Mask()
+        {
+            var c1 = "09121234567";
+            var c2 = "989121234567";
+            var c3 = "+989121234567";
+            var c4 = "9809121234567";
+            var c5 = "00989121234567";
+            var c6 = "9121234567";
+
+            var expectedValue = "091212xxx67";
+            
+            Assert.AreEqual(expectedValue, c1.MaskIranianMobileNumber());
+            Assert.AreEqual(expectedValue, c2.MaskIranianMobileNumber());
+            Assert.AreEqual(expectedValue, c3.MaskIranianMobileNumber());
+            Assert.AreEqual(expectedValue, c4.MaskIranianMobileNumber());
+            Assert.AreEqual(expectedValue, c5.MaskIranianMobileNumber());
+            Assert.AreEqual(expectedValue, c6.MaskIranianMobileNumber());
         }
         
         [Test]
