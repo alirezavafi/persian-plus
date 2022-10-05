@@ -1,4 +1,5 @@
 using FluentValidation;
+using Persian.Plus.FluentValidation.Extensions;
 
 namespace Persian.Plus.FluentValidation.Tests.Bank.Model
 {

@@ -1,4 +1,7 @@
+using System;
+using System.Linq;
 using FluentValidation;
+using Persian.Plus.FluentValidation.Extensions;
 
 namespace Persian.Plus.FluentValidation.Tests.Bank.Model
 {
@@ -7,9 +10,9 @@ namespace Persian.Plus.FluentValidation.Tests.Bank.Model
         public MelliOrPassargadAccountValidator()
         {
             RuleFor(x => x.IbanNumber)
-                .IranianIbanNumber(IranBankConstants.BankCodes.Melli, IranBankConstants.BankCodes.Passargad);
+                .IranianIbanNumber((new []{IranBankConstants.BankCodes.Melli, IranBankConstants.BankCodes.Passargad}).SelectMany(x => x).ToArray());
             RuleFor(x => x.ShetabCardNumber)
-                .IranianShetabCardNumber(IranBankConstants.BankCardBins.Melli, IranBankConstants.BankCardBins.Passargad);
+                .IranianShetabCardNumber((new []{IranBankConstants.BankCardBins.Melli, IranBankConstants.BankCardBins.Passargad}).SelectMany(x => x).ToArray());
         }
     }
 }

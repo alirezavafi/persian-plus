@@ -1,5 +1,6 @@
 using System.Data;
 using FluentValidation;
+using Persian.Plus.FluentValidation.Extensions;
 
 namespace Persian.Plus.FluentValidation.Tests.Common.Model
 {
