@@ -76,5 +76,15 @@ namespace Persian.Plus.Extensions
             }
             return checksum == 1;
         }
+        
+        public static string IbanWithIR(this string iban)
+        {
+            return !iban.StartsWith("IR") ? $"IR{iban}" : iban;
+        }
+
+        public static string IbanWithoutIR(this string iban)
+        {
+            return iban.StartsWith("IR") ? iban[2..] : iban;
+        }
     }
 }

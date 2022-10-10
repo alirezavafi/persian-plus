@@ -4,6 +4,10 @@ using Persian.Plus.FluentValidation.Validators;
 namespace Persian.Plus.FluentValidation.Extensions
 {
     public static class PersianCommonValidators {
+        public static IRuleBuilderOptions<T, string> PersianOrEnglishPhrase<T>(this IRuleBuilder<T, string> ruleBuilder) {
+            return ruleBuilder.SetValidator(new PersianOrEnglishPhrase<T>());
+        }
+
         public static IRuleBuilderOptions<T, string> PersianLetters<T>(this IRuleBuilder<T, string> ruleBuilder) {
             return ruleBuilder.SetValidator(new PersianLetters<T>());
         }
