@@ -8,6 +8,14 @@ namespace Persian.Plus.FluentValidation.Extensions
             return ruleBuilder.SetValidator(new PersianOrEnglishPhrase<T>());
         }
 
+        public static IRuleBuilderOptions<T, string> PersianPhrase<T>(this IRuleBuilder<T, string> ruleBuilder) {
+            return ruleBuilder.SetValidator(new PersianPhrase<T>());
+        }
+
+        public static IRuleBuilderOptions<T, string> PersianDateTime<T>(this IRuleBuilder<T, string> ruleBuilder) {
+            return ruleBuilder.SetValidator(new PersianDateTime<T>());
+        }
+
         public static IRuleBuilderOptions<T, string> PersianLetters<T>(this IRuleBuilder<T, string> ruleBuilder) {
             return ruleBuilder.SetValidator(new PersianLetters<T>());
         }
