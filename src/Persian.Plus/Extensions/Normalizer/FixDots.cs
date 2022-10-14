@@ -8,7 +8,7 @@ namespace Persian.Plus.Extensions.Normalizer
     public static class FixDots
     {
         private static readonly Regex _matchConvertDotsToEllipsis =
-            new Regex(@"\s*\.{3,}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
+            new Regex(@"\s*\.{3,}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// Replaces three dots with ellipsis.

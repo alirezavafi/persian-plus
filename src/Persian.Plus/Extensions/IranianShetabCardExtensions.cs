@@ -7,7 +7,7 @@ namespace Persian.Plus.Extensions
 {
     public static class IranianShetabCardExtensions
     {
-        private static readonly Regex _matchIranShetab = new Regex(@"[0-9]{16}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
+        private static readonly Regex _matchIranShetab = new Regex(@"[0-9]{16}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public static bool IsValidIranianShetabCardNumber(this string creditCardNumber)
         {

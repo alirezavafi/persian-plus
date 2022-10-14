@@ -1,4 +1,6 @@
-﻿namespace Persian.Plus.Extensions.Normalizer
+﻿using Persian.Plus.Helpers;
+
+namespace Persian.Plus.Extensions.Normalizer
 {
     /// <summary>
     /// Replaces thin spaces with a replacement
@@ -26,7 +28,7 @@
 
             if (text.ContainsThinSpace())
             {
-                result = StringExtensions._hasHalfSpaces.Replace(text, replacement);
+                result = RegexHelper.HasHalfSpacesRegex.Replace(text, replacement);
             }
 
             return result;

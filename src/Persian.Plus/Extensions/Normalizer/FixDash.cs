@@ -8,9 +8,9 @@ namespace Persian.Plus.Extensions.Normalizer
     public static class FixDash
     {
         private static readonly Regex _matchFixDashes1 =
-            new Regex(@"-{3}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
+            new Regex(@"-{3}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex _matchFixDashes2 =
-            new Regex(@"-{2}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
+            new Regex(@"-{2}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// Replaces double dash to ndash and triple dash to mdash.

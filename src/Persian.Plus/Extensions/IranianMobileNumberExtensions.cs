@@ -6,8 +6,8 @@ namespace Persian.Plus.Extensions
 {
     public static class IranianMobileNumberExtensions
     {
-        private static readonly Regex _matchIranianMobileNumber1 = new Regex(@"^(((98)|(\+98)|(0098)|(980)|0)?(?<mobileNo>(9){1}[0-9]{9}))+$", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
-        private static readonly Regex _matchIranianMobileNumber2 = new Regex(@"^(9){1}[0-9]{9}$", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
+        private static readonly Regex _matchIranianMobileNumber1 = new Regex(@"^(((98)|(\+98)|(0098)|(980)|0)?(?<mobileNo>(9){1}[0-9]{9}))+$", options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static readonly Regex _matchIranianMobileNumber2 = new Regex(@"^(9){1}[0-9]{9}$", options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public static bool IsValidIranianMobileNumber(this string mobileNumber)
         {

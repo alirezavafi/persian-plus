@@ -1,47 +1,12 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Persian.Plus.Extensions.Normalizer;
+using Persian.Plus.Helpers;
 
 namespace Persian.Plus.Extensions
 {
     public static class StringExtensions
     {
-        public static readonly TimeSpan MatchTimeout = TimeSpan.FromMinutes(1);
-
-        private static readonly Regex _matchAllTags =
-            new Regex(@"<(.|\n)*?>", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        private static readonly Regex _matchArabicHebrew =
-            new Regex(@"[\u0600-\u06FF,\u0590-\u05FF,«,»]", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        private static readonly Regex _matchOnlyPersianNumbersRange =
-            new Regex(@"^[\u06F0-\u06F9 ]+$", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        private static readonly Regex _matchOnlyPersianLetters =
-            new Regex(@"^[\s,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
-                options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        private static readonly Regex _matchOnlyPersianOrEnglishLetters =
-            new Regex(@"^[\s,A-Za-z,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
-                options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        private static readonly Regex _matchOnlyPersianOrEnglishLettersOrDigits =
-            new Regex(@"^[\s,\u06F0-\u06F9,0-9,A-Za-z,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
-                options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        private static readonly Regex _matchOnlyPersianOrEnglishPhrase =
-            new Regex(@"^[\s,-,\u06F0-\u06F9,0-9,A-Za-z,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
-                options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        private static readonly Regex _matchOnlyPersianPhrase =
-            new Regex(@"^[\s,-,\u06F0-\u06F9,0-9,\u06A9\u06AF\u06C0\u06CC\u060C,\u062A\u062B\u062C\u062D\u062E\u062F,\u063A\u064A\u064B\u064C\u064D\u064E,\u064F\u067E\u0670\u0686\u0698\u200C,\u0621-\u0629\u0630-\u0639\u0641-\u0654]+$",
-                options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-
-        internal static readonly Regex _hasHalfSpaces =
-                    new Regex(@"\u200B|\u200C|\u200E|\u200F",
-                        options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: MatchTimeout);
-        
-
         private const char RightToLeftDirectionChar = (char)0x202B;
 
         public static string ApplyRtlDirection(this string text)
@@ -58,47 +23,47 @@ namespace Persian.Plus.Extensions
         public static bool ContainsPersianLettersOrDigits(this string txt)
         {
             return !string.IsNullOrEmpty(txt) &&
-                _matchArabicHebrew.IsMatch(txt);
+                RegexHelper.MatchArabicHebrewRegex.IsMatch(txt);
         }
 
         public static bool ContainsOnlyPersianLetters(this string txt)
         {
-            var containsOnlyPersianLetters = !string.IsNullOrEmpty(txt) && _matchOnlyPersianLetters.IsMatch(txt);
+            var containsOnlyPersianLetters = !string.IsNullOrEmpty(txt) && RegexHelper.MatchOnlyPersianLettersRegex.IsMatch(txt);
             return containsOnlyPersianLetters;
         }
         
         public static bool ContainsOnlyPersianOrEnglishLetters(this string txt)
         {
-            var containsOnlyPersianOrEnglishLetters = !string.IsNullOrEmpty(txt) && (_matchOnlyPersianOrEnglishLetters.IsMatch(txt));
+            var containsOnlyPersianOrEnglishLetters = !string.IsNullOrEmpty(txt) && (RegexHelper.MatchOnlyPersianOrEnglishLettersRegex.IsMatch(txt));
             return containsOnlyPersianOrEnglishLetters;
         }
 
         public static bool ContainsOnlyPersianOrEnglishLettersOrDigits(this string txt)
         {
-            var isMatch = !string.IsNullOrEmpty(txt) && (_matchOnlyPersianOrEnglishLettersOrDigits.IsMatch(txt));
+            var isMatch = !string.IsNullOrEmpty(txt) && (RegexHelper.MatchOnlyPersianOrEnglishLettersOrDigitsRegex.IsMatch(txt));
             return isMatch;
         }
         
         public static bool ContainsOnlyPersianPhrase(this string txt)
         {
-            var isMatch = !string.IsNullOrEmpty(txt) && (_matchOnlyPersianPhrase.IsMatch(txt));
+            var isMatch = !string.IsNullOrEmpty(txt) && (RegexHelper.MatchOnlyPersianPhraseRegex.IsMatch(txt));
             return isMatch;
         }
 
         public static bool ContainsOnlyPersianOrEnglishPhrase(this string txt)
         {
-            var isMatch = !string.IsNullOrEmpty(txt) && (_matchOnlyPersianOrEnglishPhrase.IsMatch(txt));
+            var isMatch = !string.IsNullOrEmpty(txt) && (RegexHelper.MatchOnlyPersianOrEnglishPhraseRegex.IsMatch(txt));
             return isMatch;
         }
 
         public static bool ContainsOnlyPersianDigits(this string text)
         {
             return !string.IsNullOrEmpty(text) &&
-                   _matchOnlyPersianNumbersRange.IsMatch(text);
+                   RegexHelper.MatchOnlyPersianNumbersRangeRegex.IsMatch(text);
         }
         
         public static bool ContainsThinSpace(this string text)
-            => _hasHalfSpaces.IsMatch(text);
+            => RegexHelper.HasHalfSpacesRegex.IsMatch(text);
         
         public static string NormalizePersianText(this string text, PersianNormalizerFlags normalizerFlags)
         {

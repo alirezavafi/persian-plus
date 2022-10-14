@@ -6,7 +6,7 @@ namespace Persian.Plus.Extensions
 {
     public static class IranianIbanExtensions
     {
-        private static readonly Regex _matchIranSheba = new Regex(@"IR[0-9]{24}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase, matchTimeout: StringExtensions.MatchTimeout);
+        private static readonly Regex _matchIranSheba = new Regex(@"IR[0-9]{24}", options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public static bool IsIbanMatchesBankCode(this string iban, string bankCode)
         {
