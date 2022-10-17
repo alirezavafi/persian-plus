@@ -25,6 +25,8 @@ namespace Persian.Plus.Extensions
                 return false;
             }
 
+            iban = iban.IbanWithIR();
+
             if (iban.Length < 4 || iban[0] == ' ' || iban[1] == ' ' || iban[2] == ' ' || iban[3] == ' ')
             {
                 return false;
