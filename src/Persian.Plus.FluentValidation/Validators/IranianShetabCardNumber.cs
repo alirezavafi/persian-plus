@@ -14,7 +14,7 @@ namespace Persian.Plus.FluentValidation.Validators
             if (string.IsNullOrWhiteSpace(value))
                 return true;
 
-            var isValidIban = value.IsValidIranianIbanNumber();
+            var isValidIban = value.IsValidIranianShetabCardNumber();
             if (AllowedCardBins == null || AllowedCardBins.Length == 0)
                 return isValidIban;
 
