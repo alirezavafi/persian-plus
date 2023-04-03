@@ -252,17 +252,17 @@ namespace Persian.Plus.DateTime
         public static implicit operator System.DateTime(PersianDateTime d) => d.DateTime;
         public static implicit operator PersianDateTime(System.DateTime d) => new PersianDateTime(d);
 
-        public static bool operator ==(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1.Equals(persianDateTime2);
+        public static bool operator ==(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => (persianDateTime1 == null && persianDateTime2 == null) || (persianDateTime1 != null && persianDateTime1.Equals(persianDateTime2));
 
-        public static bool operator !=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => !persianDateTime1.Equals(persianDateTime2);
+        public static bool operator !=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => (persianDateTime1 == null && persianDateTime2 != null) || (persianDateTime1 != null && persianDateTime2 == null) || (persianDateTime1 != null && !persianDateTime1.Equals(persianDateTime2));
 
-        public static bool operator >(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1.DateTime > persianDateTime2.DateTime;
+        public static bool operator >(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1?.DateTime > persianDateTime2?.DateTime;
 
-        public static bool operator <(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1.DateTime < persianDateTime2.DateTime;
+        public static bool operator <(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1?.DateTime < persianDateTime2?.DateTime;
 
-        public static bool operator >=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1.DateTime >= persianDateTime2.DateTime;
+        public static bool operator >=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1?.DateTime >= persianDateTime2?.DateTime;
 
-        public static bool operator <=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1.DateTime <= persianDateTime2.DateTime;
+        public static bool operator <=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1?.DateTime <= persianDateTime2?.DateTime;
 
         public static PersianDateTime operator +(PersianDateTime persianDateTime1, TimeSpan timeSpanToAdd)
         {
@@ -444,7 +444,7 @@ namespace Persian.Plus.DateTime
 
         public int CompareTo(PersianDateTime other)
         {
-            return DateTime.CompareTo(other.DateTime);
+            return DateTime.CompareTo(other?.DateTime);
         }
 
         public int CompareTo(System.DateTime other)
@@ -454,7 +454,7 @@ namespace Persian.Plus.DateTime
 
         public bool Equals(PersianDateTime other)
         {
-            return DateTime.Equals(other.DateTime);
+            return DateTime.Equals(other?.DateTime);
         }
 
         public bool Equals(System.DateTime other)
