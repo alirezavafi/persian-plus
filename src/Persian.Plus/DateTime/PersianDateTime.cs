@@ -252,9 +252,9 @@ namespace Persian.Plus.DateTime
         public static implicit operator System.DateTime(PersianDateTime d) => d.DateTime;
         public static implicit operator PersianDateTime(System.DateTime d) => new PersianDateTime(d);
 
-        public static bool operator ==(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => (persianDateTime1 == null && persianDateTime2 == null) || (persianDateTime1 != null && persianDateTime1.Equals(persianDateTime2));
+        public static bool operator ==(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1?.Equals(persianDateTime2) == true;
 
-        public static bool operator !=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => (persianDateTime1 == null && persianDateTime2 != null) || (persianDateTime1 != null && persianDateTime2 == null) || (persianDateTime1 != null && !persianDateTime1.Equals(persianDateTime2));
+        public static bool operator !=(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1?.Equals(persianDateTime2) != true;
 
         public static bool operator >(PersianDateTime persianDateTime1, PersianDateTime persianDateTime2) => persianDateTime1?.DateTime > persianDateTime2?.DateTime;
 
