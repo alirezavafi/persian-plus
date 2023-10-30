@@ -6,7 +6,7 @@ namespace Persian.Plus.Extensions.Normalizer
     /// <summary>
     /// YeKe
     /// </summary>
-    public static class YeKe
+    public static class PersianCharactersFixer
     {
         /// <summary>
         /// Arabic Ke Char \u0643 = ARABIC LETTER KAF
