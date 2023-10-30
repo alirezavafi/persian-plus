@@ -12,7 +12,7 @@ namespace Persian.Plus.Extensions.Normalizer
         /// Fixes common writing mistakes caused by using a bad keyboard layout,
         /// such as replacing Arabic Ye with Persian one and so on ...
         /// </summary>
-        ApplyPersianYeKe = 1 << 0,
+        ApplyPersianCharacters = 1 << 0,
 
         /// <summary>
         /// ما می توانیم --> ما می‌توانیم

@@ -84,10 +84,26 @@ namespace Persian.Plus.Extensions.Normalizer
         /// </summary>
         /// <param name="data">Text to process</param>
         /// <returns>Processed Text</returns>
-        public static string ApplyCorrectYeKe(this string data)
+        public static string ApplyCorrectPersianCharacters(this string data)
         {
             if (string.IsNullOrWhiteSpace(data)) return string.Empty;
-
+            data = data.Replace("ﮎ", "ک")
+                .Replace("ﮏ", "ک")
+                .Replace("ﮐ", "ک")
+                .Replace("ﮑ", "ک")
+                .Replace("ك", "ک")
+                .Replace("ي", "ی")
+                .Replace("ئ", "ی")
+                .Replace("ى", "ی")
+                .Replace(" ", " ")
+                .Replace("‌", " ")
+                .Replace("ٔ", "")
+                .Replace("ھ", "ه")
+                .Replace("دِ", "د")
+                .Replace("بِ", "ب")
+                .Replace("زِ", "ز")
+                .Replace("شِ", "ش")
+                .Replace("سِ", "س");
             var dataChars = data.ToCharArray();
             for (var i = 0; i < dataChars.Length; i++)
             {
@@ -122,11 +138,11 @@ namespace Persian.Plus.Extensions.Normalizer
         /// </summary>
         /// <param name="data">Text to process</param>
         /// <returns>Processed Text</returns>
-        public static string ApplyCorrectYeKe(this object data)
+        public static string ApplyCorrectPersianCharacters(this object data)
         {
             return data == null ?
                         string.Empty :
-                        Convert.ToString(data, CultureInfo.InvariantCulture).ApplyCorrectYeKe();
+                        Convert.ToString(data, CultureInfo.InvariantCulture).ApplyCorrectPersianCharacters();
         }
     }
 }

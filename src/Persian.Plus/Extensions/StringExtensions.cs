@@ -82,9 +82,9 @@ namespace Persian.Plus.Extensions
                 text = text.RemoveDiacritics();
             }
 
-            if (normalizerFlags.HasFlag(PersianNormalizerFlags.ApplyPersianYeKe))
+            if (normalizerFlags.HasFlag(PersianNormalizerFlags.ApplyPersianCharacters))
             {
-                text = text.ApplyCorrectYeKe();
+                text = text.ApplyCorrectPersianCharacters();
             }
 
             if (normalizerFlags.HasFlag(PersianNormalizerFlags.ApplyHalfSpaceRule))
