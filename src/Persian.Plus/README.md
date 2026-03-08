@@ -1,35 +1,25 @@
 # Persian.Plus
 
-A set of utilities for Persian/Farsi text processing, validation, number conversion, and date handling in .NET.
-
-## Packages
-
-| Package | NuGet |
-| --- | --- |
-| `Persian.Plus` | https://www.nuget.org/packages/Persian.Plus |
-| `Persian.Plus.FluentValidation` | https://www.nuget.org/packages/Persian.Plus.FluentValidation |
+Utilities for Persian/Farsi text processing, validation, number conversion, and date handling in .NET.
 
 ## Install
 
 ```bash
 dotnet add package Persian.Plus
-dotnet add package Persian.Plus.FluentValidation
 ```
 
-## Persian.Plus
+## Features
 
-`Persian.Plus` provides:
-
-- Persian calendar/date-time helpers (`PersianDateTime`, events/holidays)
 - Persian text and phrase validation helpers
 - Iranian national identifiers validation (National Code, National Legal Code, Postal Code)
 - Iranian bank validations (IBAN, Shetab card)
 - Iranian mobile number validation, coercion, and masking
 - Persian/English number conversion and number-to-text (`Textify`)
-- DataAnnotations attributes for ASP.NET Core and model validation
+- Persian calendar/date-time helpers (`PersianDateTime`, events/holidays)
+- DataAnnotations attributes for model validation
 - Persian text normalization utilities
 
-### PersianDateTime samples
+## PersianDateTime sample
 
 ```csharp
 using System;
@@ -134,31 +124,27 @@ Console.WriteLine(holidays.Any());
 // Output: True
 ```
 
-### Other examples
+## Common extension samples
 
 `NormalizePersianText` cleans and standardizes Persian text. Based on selected flags it can fix Arabic/Persian character variants (like `ي` -> `ی`, `ك` -> `ک`), apply half-space/ZWNJ rules, normalize spacing/line-breaks, remove diacritics, and run punctuation cleanup.
 
 ```csharp
-using Persian.Plus.DateTime;
 using Persian.Plus.Extensions;
 using Persian.Plus.Extensions.Number;
 using Persian.Plus.Extensions.Normalizer;
 
-// Mobile number
-var normalized = "+989121234567".CoerceIranianMobileNumber();
+var validMobile = "09121234567".IsValidIranianMobileNumber();
+// Output: true
+var coerceMobile = "+989121234567".CoerceIranianMobileNumber();
 // Output: 09121234567
-var masked = "09121234567".MaskIranianMobileNumber();
+var maskedMobile = "09121234567".MaskIranianMobileNumber();
 // Output: 091212xxx67
-var isValidMobile = "9121234567".IsValidIranianMobileNumber();
+
+var isPersianOnly = "علیرضا وفی".ContainsOnlyPersianLetters();
+// Output: true
+var isPersianOrEnglish = "علیرضا Vafi".ContainsOnlyPersianOrEnglishLetters();
 // Output: true
 
-// Persian/English phrase checks
-var isPersian = "علیرضا وفی".ContainsOnlyPersianLetters();
-// Output: true
-var isMixed = "علیرضا Vafi".ContainsOnlyPersianOrEnglishLetters();
-// Output: true
-
-// Number helpers
 var persianDigits = "123456".ToPersianNumbers();
 // Output: ۱۲۳۴۵۶
 var englishDigits = "۱۲۳۴۵۶".ToEnglishNumbers();
@@ -166,19 +152,14 @@ var englishDigits = "۱۲۳۴۵۶".ToEnglishNumbers();
 var words = 1250.Textify(Language.Persian);
 // Output: یکهزار و دویست و پنجاه
 
-// Normalizer
-var normalizedText = "سلام  دنيا".NormalizePersianText(
+var normalized = "سلام  دنيا".NormalizePersianText(
     PersianNormalizerFlags.ApplyPersianCharacters |
     PersianNormalizerFlags.ApplyHalfSpaceRule |
     PersianNormalizerFlags.CleanupSpacingAndLineBreaks);
 // Output: سلام دنیا
-
-var today = PersianDateTime.Now;
-var nowFormatted = $"{today:yyyy/MM/dd HH:mm:ss}";
-// Output: (current Persian date/time)
 ```
 
-### DataAnnotations example
+## DataAnnotations sample
 
 ```csharp
 using Persian.Plus.DataAnnotations;
@@ -195,50 +176,3 @@ public class PersonDto
     public string MobileNumber { get; set; }
 }
 ```
-
-## Persian.Plus.FluentValidation
-
-Adds Persian/Iranian validators as FluentValidation rule extensions.
-
-Available rule extensions include:
-
-- `PersianPhrase()`
-- `PersianOrEnglishPhrase()`
-- `PersianLetters()`
-- `PersianDateTime()`
-- `IranianNationalCode()`
-- `IranianNationalLegalCode()`
-- `IranianPostalCode()`
-- `IranianMobileNumber()`
-- `IranianIbanNumber(params string[] bankCodes)`
-- `IranianShetabCardNumber(params string[] cardBins)`
-
-### FluentValidation example
-
-```csharp
-using FluentValidation;
-using Persian.Plus;
-using Persian.Plus.FluentValidation.Extensions;
-
-public class BankAccountInfo
-{
-    public string IbanNumber { get; set; }
-    public string ShetabCardNumber { get; set; }
-}
-
-public class BankAccountInfoValidator : AbstractValidator<BankAccountInfo>
-{
-    public BankAccountInfoValidator()
-    {
-        RuleFor(x => x.IbanNumber)
-            .IranianIbanNumber(IranBankConstants.BankCodes.Melli);
-
-        RuleFor(x => x.ShetabCardNumber)
-            .IranianShetabCardNumber(IranBankConstants.BankCardBins.Melli);
-    }
-}
-```
-
-## License
-
-This project is licensed under MIT. See [LICENSE.md](LICENSE.md).
