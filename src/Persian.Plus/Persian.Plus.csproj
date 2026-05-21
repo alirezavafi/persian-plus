@@ -6,7 +6,7 @@
         <Description>An extended persian tools based on community open source projects</Description>
         <PackageProjectUrl>https://github.com/alirezavafi/persian-plus</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/alirezavafi/persian-plus</PackageLicenseUrl>
-        <PackageVersion>1.7.1</PackageVersion>
+        <PackageVersion>1.7.2</PackageVersion>
         <PackageId>Persian.Plus</PackageId>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <AssemblyName>Persian.Plus</AssemblyName>

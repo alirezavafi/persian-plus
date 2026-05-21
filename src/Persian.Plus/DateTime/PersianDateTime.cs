@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using Persian.Plus.Extensions.Number;
 
 namespace Persian.Plus.DateTime
 {
@@ -218,7 +219,9 @@ namespace Persian.Plus.DateTime
 
                 return new PersianDateTime(new System.DateTime(num));
             }
-            var parts = s.Split(new[] {'/', '-', ',', ' ', '.', ':'}, StringSplitOptions.RemoveEmptyEntries);
+
+            s = s.ToEnglishNumbers();
+            var parts = s.Split(['/', '-', ',', ' ', '.', ':'], StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length < 3 || parts.Any(x => !int.TryParse(x, out var temp)))
             {
                 throw new FormatException($"Invalid Value {s}");
